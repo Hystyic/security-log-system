@@ -37,8 +37,8 @@ def main():
             read(table)
 
     elif choice == "Edit":
-        if table=='visitor':
-            st.subheader("Enter visitor Details:")
+        if table=='resident':
+            st.subheader("Enter resident Details:")
             update(table)
 
     elif choice == "Remove ":

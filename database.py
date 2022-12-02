@@ -30,16 +30,16 @@ def add_data_security_manager(manager_id,username,Fname,Lname,Mob_no,block_id,pa
     mydb.commit()
 
 def view_all_data():
-    c.execute('SELECT * FROM residents')
+    c.execute('SELECT * FROM resident')
     data = c.fetchall()
     return data
 
 def view_all_manager():
-    c.execute('SELECT * FROM security managers')
+    c.execute('SELECT * FROM security_manager')
     data = c.fetchall()
     return data
 def view_all_visitor():
-    c.execute('SELECT * FROM visitors')
+    c.execute('SELECT * FROM visitor')
     data = c.fetchall()
     return data
 
@@ -57,15 +57,15 @@ def view_only_visitor():
     return data
 
 def get_details(resident_id):
-    c.execute('SELECT * FROM visitor WHERE Fname="{}"'.format(resident_id))
+    c.execute('SELECT * FROM resident WHERE Fname="{}"'.format(resident_id))
     data = c.fetchall()
     return data
 
 
 
-def edit_details(new_STUD_ID,new_FName,new_LName,new_PH_NO, new_block_id,  new_resident_id,resident_id,Fname,Lname,Mob_no,block_id,house_id):
-    c.execute("UPDATE visitor SET resident_id=%s, Fname=%s, Lname=%s, Mob_no=%s,block_id=%s,house_id=%s WHERE "
-              "resident_id=%s and Fname=%s and Lname=%s and Mob_no=%s and block_id=%s and house_id=%s" , (new_STUD_ID,new_FName,new_LName,new_PH_NO, new_block_id, new_resident_id,resident_id,Fname,Lname,Mob_no,block_id,house_id))
+def edit_details(new_resident_ID,new_FName,new_LName,new_PH_NO, new_block_id,  new_resident_id,resident_id,Fname,Lname,Mob_no,block_id,house_id):
+    c.execute("UPDATE resident SET resident_id=%s, Fname=%s, Lname=%s, Mob_no=%s,block_id=%s,house_id=%s WHERE "
+              "resident_id=%s and Fname=%s and Lname=%s and Mob_no=%s and block_id=%s and house_id=%s" , (new_resident_ID,new_FName,new_LName,new_PH_NO, new_block_id, new_resident_id,resident_id,Fname,Lname,Mob_no,block_id,house_id))
     mydb.commit()
     data = c.fetchall()
     return data
@@ -77,7 +77,6 @@ def delete_data(resident_id):
 def delete_data_hostel_manager(manager_id):
     c.execute('DELETE FROM resident_details WHERE manager_id="{}"'.format(manager_id))
     mydb.commit()
-
 def delete_visitor(visitor_id):
     c.execute('DELETE FROM car_category WHERE visitor_id="{}"'.format(visitor_id))
     mydb.commit()

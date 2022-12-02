@@ -4,7 +4,7 @@ from database import view_all_data, view_only_resident_names, delete_data,view_a
 
 
 def delete(table):
-    if table=='visitor':
+    if table=='resident':
         result = view_all_data()
         df = pd.DataFrame(result, columns=['resident_id','Fname','Lname','Mob_no','block_id','house_id'])
         with st.expander("Current data"):
@@ -39,10 +39,6 @@ def delete(table):
 
     elif table=='visitor':
         result = view_all_visitor()
-        df = pd.DataFrame(result, columns=['Category','No_of_persons','Cost_per_day','LateFee_charges'])
-        with st.expander("Current data"):
-            st.dataframe(df)
-
         list_of_visitor = [i[0] for i in view_only_visitor()]
         selected_visitor = st.selectbox("visitor to Delete", list_of_visitor)
         st.warning("Do you want to delete ::{}".format(selected_visitor))

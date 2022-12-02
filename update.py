@@ -5,15 +5,15 @@ from database import view_all_data, view_only_resident_names, get_details, edit_
 
 
 def update(table):
-    if table=='visitor':
+    if table=='resident':
         result = view_all_data()
         st.table(result)
         # st.write(result)
-        df = pd.DataFrame(result, columns=['resident_id','Fname','Lname','Mob_no','Dept' ,'Year_of_study' ,'block_id','house_id'])
-        with st.expander("Current students"):
+        df = pd.DataFrame(result, columns=['resident_id','Fname','Lname','Mob_no','block_id','house_id'])
+        with st.expander("Current residents"):
             st.dataframe(df)
         list_of_resident = [i[0] for i in view_only_resident_names()]
-        selected_resident = st.selectbox("visitor to Edit", list_of_resident)
+        selected_resident = st.selectbox("resident to Edit", list_of_resident)
         selected_result = get_details(selected_resident)
         # st.write(selected_result)
         if selected_result:
@@ -28,7 +28,7 @@ def update(table):
 
             col1, col2 ,col3= st.columns(3)
             with col1:
-                new_STUD_ID = st.text_input(" resident_id:",resident_id)
+                new_resident_ID = st.text_input("resident_id:",resident_id)
                 new_FName = st.text_input("Fname:",Fname)
                 new_LName= st.text_input("Lname:",Lname)
             with col2:
@@ -39,8 +39,8 @@ def update(table):
                 new_resident_id= st.text_input("house_id:",house_id) 
         
 
-            if st.button("Update visitor"):
-                edit_details(new_STUD_ID,new_FName,new_LName,new_PH_NO, new_block_id,  new_resident_id,resident_id,Fname,Lname,Mob_no,block_id,house_id)
+            if st.button("Update resident"):
+                edit_details(new_resident_ID,new_FName,new_LName,new_PH_NO, new_block_id,  new_resident_id,resident_id,Fname,Lname,Mob_no,block_id,house_id)
                 st.success("Successfully updated:: {} to ::{}".format(Fname, new_FName))
 
         result2 = view_all_data()

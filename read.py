@@ -4,7 +4,7 @@ from database import view_all_data,view_all_manager,view_all_visitor
 
 
 def read(table):
-    if table=='visitor':
+    if table=='resident':
         result = view_all_data()
         # st.write(result)
         df = pd.DataFrame(result, columns=['resident_id','Fname','Lname','Mob_no','block_id','house_id'])

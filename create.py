@@ -32,7 +32,7 @@ def create(table):
             
         
         if st.button("Add"):
-            add_data_visitor(visitor_id,in_time,out_time,NAME,resident_id)
+            add_data_visitor(visitor_id,in_time,out_time,name,resident_id)
             st.success("Successfully added VISITOR: {}".format(visitor_id))
 
 
